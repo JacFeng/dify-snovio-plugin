@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: Snovio Plugin API
+  version: '1.6.0'
+servers:
+  - url: http://localhost:3333
+paths:
+  /v1/oauth/access_token:
+    post:
+      summary: 获取 Snovio Access Token
+      operationId: getAccessToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: "9e4c7d6e309cb4064a4d942a16ff8b88"
+                client_secret:
+                  type: string
+                  example: "8c77fdb4f359f8ca9883a87860ac9b61"
+                grant_type:
+                  type: string
+                  default: client_credentials
+              required: [client_id, client_secret, grant_type]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  expires_in:
+                    type: integer
+
+  /v1/get-domain-emails-with-info:
+    post:
+      summary: 根据域名查找邮箱
+      operationId: getDomainEmails
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                domain:
+                  type: string
+                  example: "tomkin.com.au"
+              required: [access_token, domain]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object

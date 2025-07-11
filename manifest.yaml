@@ -1,0 +1,12 @@
+schema_version: v1
+name: "snovio-dify-plugin"
+author: "jacfeng"
+description:
+  en: "Dify plugin for obtaining Snovio access token and querying domain emails."
+version: "1.0.0"
+type: api
+api:
+  url: "http://localhost:3333"
+  specification:
+    type: openapi
+    path: ./openapi.yaml
